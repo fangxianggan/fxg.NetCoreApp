@@ -1,4 +1,5 @@
 ﻿using NetCore.Core.Extensions;
+using NetCore.Domain;
 using NetCore.DTO.UserModel;
 using NetCore.EntityFrameworkCore.Models;
 using NetCore.IRepository.Common;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace NetCore.Services
 {
-    public class UserServices : BaseServices<UserViewModel>,IUserServices
+    public class UserServices :IUserServices
     {
-        private readonly IRepository<UserViewModel> _repository;
-        public UserServices(IRepository<UserViewModel> repository):base(repository)
+        private readonly IBaseDomain<User> _domain;
+        public UserServices(IBaseDomain<User> domain)
         {
-            _repository = repository;
+            _domain = domain;
         }
         /// <summary>
         /// 
@@ -22,7 +23,7 @@ namespace NetCore.Services
         public async Task<bool> AddService(UserViewModel entity)
         {
             var t = entity.MapTo<User>();
-            return await  _repository.Add(t);
+            return await _domain.AddDomain(t);
         }
     }
 }

@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NetCore.Domain\NetCore.Domain.csproj" />
     <ProjectReference Include="..\NetCore.EntityFrameworkCore\NetCore.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\NetCore.IRepository\NetCore.IRepository.csproj" />
     <ProjectReference Include="..\NetCore.IService\NetCore.IServices.csproj" />

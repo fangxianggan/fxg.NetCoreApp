@@ -36,7 +36,7 @@ namespace NetCore.Repository.UnitWork
         private string _paramPrefix = "@";
         private readonly string _providerName = "System.Data.Odbc";
         private readonly DbProviderFactory _dbFactory;
-        private DBType _dbType = DBType.SqlServer;
+        private DBType _dbType = DBType.MySql;
         private string _connectionStringName = "";
 
         public string ConnectionStringName { get { return _connectionStringName; } }

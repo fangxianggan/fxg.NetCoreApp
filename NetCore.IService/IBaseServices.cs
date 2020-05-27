@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NetCore.IServices
 {
-   public  interface IBaseServices<T> where T : class
+   public  interface IBaseServices<T> where T:class 
     {
         /// <summary>
         /// 新增
