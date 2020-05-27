@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{2021ABE4-19F3-43E9-8BAA-DCF395C908A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.Service", "NetCore.Service\NetCore.Service.csproj", "{92DB936E-7C8A-4D64-9CE4-7CF02AC605B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.Services", "NetCore.Service\NetCore.Services.csproj", "{92DB936E-7C8A-4D64-9CE4-7CF02AC605B7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructrue", "Infrastructrue", "{9CFFB9C7-E0A2-4551-B0F1-D11A9A7B005A}"
 EndProject
@@ -19,19 +19,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vue", "vue", "{2EAA19DD-DC2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{821C3ACB-14F9-4561-9E2C-6E26DFF4BE64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreApp", "NetCoreApp\NetCoreApp.csproj", "{7A09BAF2-F065-4241-B825-FA51A458E961}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreApp", "NetCoreApp\NetCoreApp.csproj", "{7A09BAF2-F065-4241-B825-FA51A458E961}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.EntityFrameworkCore", "NetCore.EntityFrameworkCore\NetCore.EntityFrameworkCore.csproj", "{8A8C9A30-DAE6-4692-BD20-1B53B5A8E820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.Repository", "NetCore.Repository\NetCore.Repository.csproj", "{FA4AFD6E-5592-4A52-8F5B-C91F61F87304}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.Repository", "NetCore.Repository\NetCore.Repository.csproj", "{FA4AFD6E-5592-4A52-8F5B-C91F61F87304}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.IRepository", "NetCore.IRepository\NetCore.IRepository.csproj", "{01748D9C-292A-4DE7-B3FF-E41476A8FE85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.IRepository", "NetCore.IRepository\NetCore.IRepository.csproj", "{01748D9C-292A-4DE7-B3FF-E41476A8FE85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.Core", "NetCore.Core\NetCore.Core.csproj", "{8FEC661E-F764-42CE-86B0-5C437848F9E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.Core", "NetCore.Core\NetCore.Core.csproj", "{8FEC661E-F764-42CE-86B0-5C437848F9E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.IService", "NetCore.IService\NetCore.IService.csproj", "{B051CF22-054F-4F4B-BD61-4DF352CCA271}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.IServices", "NetCore.IService\NetCore.IServices.csproj", "{B051CF22-054F-4F4B-BD61-4DF352CCA271}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.DTO", "NetCore.DTO\NetCore.DTO.csproj", "{75CD331B-991A-45C0-9ED1-4D0E8CD4FFAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore.DTO", "NetCore.DTO\NetCore.DTO.csproj", "{75CD331B-991A-45C0-9ED1-4D0E8CD4FFAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

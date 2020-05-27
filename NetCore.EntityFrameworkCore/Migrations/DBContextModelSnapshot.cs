@@ -14,7 +14,7 @@ namespace NetCore.EntityFrameworkCore.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("NetCore.EntityFrameworkCore.Models.TaskJob", b =>
@@ -74,6 +74,18 @@ namespace NetCore.EntityFrameworkCore.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("TaskJob");
+                });
+
+            modelBuilder.Entity("NetCore.EntityFrameworkCore.Models.User", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("name");
+
+                    b.HasKey("id");
+
+                    b.ToTable("User");
                 });
 #pragma warning restore 612, 618
         }

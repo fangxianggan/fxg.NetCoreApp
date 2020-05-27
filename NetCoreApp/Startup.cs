@@ -1,19 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using NetCore.DTO.AutoMapper;
+using NetCore.EntityFrameworkCore.Context;
+using NetCore.IRepository;
+using NetCore.IRepository.Common;
+using NetCore.IRepository.UnitWork;
+using NetCore.IServices;
+using NetCore.Repository;
+using NetCore.Repository.Common;
+using NetCore.Repository.UnitWork;
+using NetCore.Services;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace NetCoreApp
@@ -23,6 +28,8 @@ namespace NetCoreApp
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            AutoMapperConfig.RegisterMappings();
         }
 
         public IConfiguration Configuration { get; }
@@ -36,6 +43,11 @@ namespace NetCoreApp
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+
+
+            //读取aoosettings.json里配置的数据库连接语句需要的代码
+            var connection = Configuration.GetConnectionString("MySqlConnection");
+            services.AddDbContext<DBContext>(options => options.UseMySql(connection));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -93,7 +105,12 @@ namespace NetCoreApp
             //通过反射将Services和Repository两个程序集的全部方法注入，要记得!!!这个注入的是实现类层，不是接口层 IServices
             try
             {
-                var servicesDllFile = Path.Combine(basePath, "NetCore.Service.dll");
+                builder.RegisterGeneric(typeof(BaseServices<>)).As(typeof(IBaseServices<>)).InstancePerDependency();
+                builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerDependency();
+                builder.RegisterGeneric(typeof(DapperRepository<>)).As(typeof(IDapperRepository<>)).InstancePerDependency();
+
+
+                var servicesDllFile = Path.Combine(basePath, "NetCore.Services.dll");
                 var assemblysServices = Assembly.LoadFrom(servicesDllFile);
                 builder.RegisterAssemblyTypes(assemblysServices).AsImplementedInterfaces();
 
@@ -101,10 +118,12 @@ namespace NetCoreApp
                 var assemblysRepository = Assembly.LoadFrom(repositoryDllFile);
                 builder.RegisterAssemblyTypes(assemblysRepository).AsImplementedInterfaces();
 
+                
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("※※★※※ 如果你是第一次下载项目，请先F6编译，然后再F5执行，因为解耦了，如果你是发布的模式，请检查bin文件夹是否存在Repository.dll和service.dll ※※★※※");
+                throw new Exception(ex.Message);
             }
 
             //将services填充到Autofac容器生成器中
@@ -116,6 +135,9 @@ namespace NetCoreApp
             #endregion
 
             return new AutofacServiceProvider(ApplicationContainer);//第三方IOC接管 core内置DI容器
+
+
+           
 
         }
 

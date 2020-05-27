@@ -27,6 +27,11 @@ namespace NetCore.EntityFrameworkCore.Context
         /// 
         /// </summary>
         public DbSet<TaskJob>  TaskJobs  { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DbSet<User> Users { get; set; }
     }
     
 }

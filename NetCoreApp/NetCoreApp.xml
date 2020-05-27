@@ -4,6 +4,26 @@
         <name>NetCoreApp</name>
     </assembly>
     <members>
+        <member name="T:NetCoreApp.Controllers.TestController">
+            <summary>
+            
+            </summary>
+            
+        </member>
+        <member name="M:NetCoreApp.Controllers.TestController.#ctor(NetCore.IServices.IUserServices)">
+            <summary>
+            
+            </summary>
+            <param name="service"></param>
+        </member>
+        <member name="M:NetCoreApp.Controllers.TestController.GetTest">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+            
+        </member>
         <member name="M:NetCoreApp.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             

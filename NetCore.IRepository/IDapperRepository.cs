@@ -7,41 +7,24 @@ using System.Threading.Tasks;
 
 namespace NetCore.IRepository
 {
-    public interface IEFRepository<T> where T : class
+    public interface IDapperRepository<T> where T : class
     {
         /// <summary>
         /// 新增
         /// </summary>
         /// <param name="entity">新增实体</param>
         /// <returns></returns>
-       Task<T> Add(T entity);
+        Task<bool> Add(T entity);
 
-        Task<bool> Add(T entity, bool retType);
-
-        /// <summary>
-        /// 批量添加
-        /// </summary>
-        /// <param name="list"></param>
-        /// <returns></returns>
-        Task<List<T>> AddList(IEnumerable<T> list);
-
-
-
+   
         /// <summary>
         /// 更新
         /// </summary>
         /// <param name="current">更新实体</param>
         /// <returns></returns>
-        Task<T> Update(T current);
+        Task<long> Update(T current);
 
-        Task<bool> Update(T current, bool retType);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="list"></param>
-        /// <returns></returns>
-        Task<List<T>> UpdateList(IEnumerable<T> list);
+     
         /// <summary>
         /// 根据主键删除
         /// </summary>

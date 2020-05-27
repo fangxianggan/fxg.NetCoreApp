@@ -1,25 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using NetCore.DTO.ReponseViewModel;
-using NetCore.EntityFrameworkCore.Models;
-using NetCore.IService;
+using NetCore.DTO.UserModel;
+using NetCore.IServices;
 
 namespace NetCoreApp.Controllers
 {
     /// <summary>
     /// 
     /// </summary>
-    public class TestController : Controller
+    /// 
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TestController : ControllerBase
     {
-        private readonly IBaseService<TaskJob> _service;
+        private readonly IUserServices _service;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="service"></param>
-        public TestController(IBaseService<TaskJob> service)
+        public TestController(IUserServices service)
         {
             _service = service;
         }
@@ -29,10 +29,23 @@ namespace NetCoreApp.Controllers
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public async Task<HttpReponseViewModel<TaskJob>> GetTest(int x)
+        /// 
+        [HttpGet, Route("getddd")]
+        public async Task<bool> GetTest()
         {
-            return await _service.GetEntityService(x);
+            try {
+
+                UserViewModel test = new UserViewModel();
+                test.id = 1;
+                test.name = "22";
+                return await _service.AddService(test);
+            } catch (Exception ex) {
+
+                throw new Exception(ex.Message);
+            }
+          
         }
-        
+       
+
     }
 }

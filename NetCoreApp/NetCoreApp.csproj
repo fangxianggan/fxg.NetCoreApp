@@ -8,6 +8,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>D:\个人文件\.netcore\fxg.NetCoreApp\NetCoreApp\NetCoreApp.xml</DocumentationFile>
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,8 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NetCore.DTO\NetCore.DTO.csproj" />
     <ProjectReference Include="..\NetCore.EntityFrameworkCore\NetCore.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\NetCore.IService\NetCore.IService.csproj" />
+    <ProjectReference Include="..\NetCore.IService\NetCore.IServices.csproj" />
+    <ProjectReference Include="..\NetCore.Repository\NetCore.Repository.csproj" />
+    <ProjectReference Include="..\NetCore.Service\NetCore.Services.csproj" />
   </ItemGroup>
 
 </Project>

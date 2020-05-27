@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using NetCore.DTO.UserModel;
+using NetCore.EntityFrameworkCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,7 +34,7 @@ namespace NetCore.DTO.AutoMapper
 
             //CreateMap<OrderViewModel, Order>();
 
-            //CreateMap<OrderViewModel, RegisterOrderCommand>();
+           CreateMap<UserViewModel, User>();
         }
     }
 }
