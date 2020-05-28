@@ -3,22 +3,22 @@ using System.IO;
 using System.Reflection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NetCore.Core.Extensions;
+using NetCore.Domain;
 using NetCore.DTO.AutoMapper;
 using NetCore.EntityFrameworkCore.Context;
 using NetCore.IRepository;
 using NetCore.IRepository.Common;
-using NetCore.IRepository.UnitWork;
-using NetCore.IServices;
 using NetCore.Repository;
 using NetCore.Repository.Common;
-using NetCore.Repository.UnitWork;
-using NetCore.Services;
+using NetCoreApp.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace NetCoreApp
@@ -29,7 +29,7 @@ namespace NetCoreApp
         {
             Configuration = configuration;
 
-            AutoMapperConfig.RegisterMappings();
+            
         }
 
         public IConfiguration Configuration { get; }
@@ -43,8 +43,10 @@ namespace NetCoreApp
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-
-
+            //自动创建映射
+            //automap
+            services.AddAutoMapperSetup();
+          
             //读取aoosettings.json里配置的数据库连接语句需要的代码
             var connection = Configuration.GetConnectionString("MySqlConnection");
             services.AddDbContext<DBContext>(options => options.UseMySql(connection));
@@ -105,7 +107,7 @@ namespace NetCoreApp
             //通过反射将Services和Repository两个程序集的全部方法注入，要记得!!!这个注入的是实现类层，不是接口层 IServices
             try
             {
-                builder.RegisterGeneric(typeof(BaseServices<>)).As(typeof(IBaseServices<>)).InstancePerDependency();
+                builder.RegisterGeneric(typeof(BaseDomain<>)).As(typeof(IBaseDomain<>)).InstancePerDependency();
                 builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerDependency();
                 builder.RegisterGeneric(typeof(DapperRepository<>)).As(typeof(IDapperRepository<>)).InstancePerDependency();
 
@@ -171,8 +173,8 @@ namespace NetCoreApp
                 s.RoutePrefix = string.Empty; //默认值是 "swagger" ,需要这样请求:https://localhost:44300/
 
             });
-
-
+            //automapper
+            app.UseStateAutoMapper();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
